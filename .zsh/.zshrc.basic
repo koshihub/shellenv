@@ -1,0 +1,46 @@
+setopt auto_cd
+setopt auto_pushd
+setopt correct
+setopt magic_equal_subst
+setopt notify
+unsetopt AUTO_REMOVE_SLASH
+unsetopt GLOB_DOTS
+
+# completion
+autoload -U compinit promptinit
+compinit
+zstyle ':completion::complete:*' use-cache true
+zstyle ':completion:*:default' menu select=1
+zstyle ':completion:*' insert-tab false
+zstyle ':completion::complete:*' local-directories
+bindkey "^[[Z" reverse-menu-complete 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 
+
+# 補完候補のメニュー選択で、矢印キーの代わりにhjklで移動出来るようにする。
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
+# zsh Git
+autoload -Uz vcs_info
+zstyle ":vcs_info:*" enable git
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "+"
+zstyle ':vcs_info:git:*' unstagedstr "-"
+zstyle ':vcs_info:git:*' actionformats '%F{5}[%f%s%F{5}]%F{3}%F{5}[%f%r%F{5}]%F{3}%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f%F{1}%u%f%F{6}%c%f'
+zstyle ':vcs_info:git:*' formats       '%F{5}[%f%s%F{5}]%F{3}%F{5}[%f%r%F{5}]%F{3}%F{5}[%F{2}%b%F{5}]%F{1}%u%f%F{6}%c%f'
+precmd() { vcs_info }
+RPROMPT='${vcs_info_msg_0_}%f'
+
+# 色の設定
+#export LSCOLORS=Exfxcxdxbxegedabagacad
+# 補完時の色の設定
+#export LS_COLORS='di=42;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+# ZLS_COLORSとは？
+#export ZLS_COLORS=$LS_COLORS
+# lsコマンド時、自動で色がつく(ls -Gのようなもの？)
+#export CLICOLOR=true
+# 補完候補に色を付ける
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
