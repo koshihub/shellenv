@@ -1,5 +1,4 @@
 # powerline > zsh
-export PATH=$PATH:~/Library/Python/2.7/bin
 powerline-daemon -q
-source ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
-
+. ~/.anyenv/envs/pyenv/versions/2.7.9/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh

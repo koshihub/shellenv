@@ -1,0 +1,5 @@
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+" tab settings
+nnoremap <C-n> gt
+nnoremap <C-p> gT

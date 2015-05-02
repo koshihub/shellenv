@@ -2,3 +2,7 @@
 alias la="ls -a"
 alias lf="ls -F"
 alias ll="ls -la"
+
+# tmux copy
+alias tc='tmux save-buffer - | reattach-to-user-namespace pbcopy'
+
