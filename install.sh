@@ -3,3 +3,4 @@ cp .tmux.conf $HOME
 cp .zshrc $HOME
 cp .vimrc $HOME
 cp -r .vim/conf.d $HOME
+cp -r .vim/ $HOME
