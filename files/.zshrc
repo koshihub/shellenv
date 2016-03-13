@@ -1,5 +1,5 @@
 # import config files
-for conf in `find $HOME/.zsh -name ".zshrc.*"`; do
+for conf in `find -L $HOME/.zsh -name ".zshrc.*"`; do
     source $conf
 done
 
